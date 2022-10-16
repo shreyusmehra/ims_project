@@ -10,6 +10,7 @@ const connectDB = require("./db/connect");
 
 // routers
 const authRouter = require("./routes/auth");
+const inventoryRouter = require("./routes/inventory");
 
 // middleware
 const authenticateUser = require("./middleware/authentication");
@@ -26,6 +27,7 @@ app.use(cors());
 
 // routes
 app.use("/api/v1/auth", authRouter);
+app.use("/api/v1/inventory", authenticateUser, inventoryRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
