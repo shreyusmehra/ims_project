@@ -188,7 +188,7 @@ const AppProvider = ({ children }) => {
   const getInventory = async () => {
     const { page, search, searchStatus, searchType, sort } = state;
 
-    let url = `/jobs?page=${page}&status=${searchStatus}&inventoryType=${searchType}&sort=${sort}`;
+    let url = `/inventory?page=${page}&status=${searchStatus}&inventoryType=${searchType}&sort=${sort}`;
     if (search) {
       url = url + `&search=${search}`;
     }
@@ -215,7 +215,7 @@ const AppProvider = ({ children }) => {
 
     try {
       const { productName, description, status, category } = state;
-      await authFetch.patch(`/jobs/${state.editInventoryId}`, {
+      await authFetch.patch(`/inventory/${state.editInventoryId}`, {
         productName,
         description,
         status,
@@ -237,7 +237,7 @@ const AppProvider = ({ children }) => {
     dispatch({ type: DELETE_INVENTORY_BEGIN });
 
     try {
-      await authFetch.delete(`/jobs/${inventoryId}`);
+      await authFetch.delete(`/inventory/${inventoryId}`);
       getInventory();
     } catch (error) {
       logoutUser();
