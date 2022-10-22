@@ -29,7 +29,7 @@ const login = async (req, res) => {
     throw new BadRequestError("Please provide email and password");
   }
   // to check if user exists or not
-  const user = User.findOne({ email });
+  const user = await User.findOne({ email }).select("+password");
   if (!user) {
     throw new UnauthenticatedError("Invalid Credentials");
   }
