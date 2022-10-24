@@ -188,7 +188,7 @@ const AppProvider = ({ children }) => {
   const getInventory = async () => {
     const { page, search, searchStatus, searchType, sort } = state;
 
-    let url = `/inventory?page=${page}&status=${searchStatus}&inventoryType=${searchType}&sort=${sort}`;
+    let url = `/inventory?page=${page}&status=${searchStatus}&category=${searchType}&sort=${sort}`;
     if (search) {
       url = url + `&search=${search}`;
     }
