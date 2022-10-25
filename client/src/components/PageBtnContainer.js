@@ -36,12 +36,20 @@ const PageBtnContainer = () => {
         alignItems: "center",
       }}
     >
-      <Button variant="standard" onClick={prevPage}>
+      <Button
+        variant="standard"
+        onClick={prevPage}
+        disabled={page === 1 ? true : false}
+      >
         <NavigateBeforeIcon />
         prev
       </Button>
-      <div style={{ fontWeight: "bold" }}>{page}</div>
-      <Button variant="standard" onClick={nextPage}>
+      <div style={{ fontWeight: "bold" }}>Page {page}</div>
+      <Button
+        variant="standard"
+        onClick={nextPage}
+        disabled={numOfPages === page ? true : false}
+      >
         next
         <NavigateNextIcon />
       </Button>

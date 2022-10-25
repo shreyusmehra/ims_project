@@ -1,6 +1,9 @@
 import { useAppContext } from "../context/appContext";
 import { useEffect } from "react";
 import Inventory from "./Inventory";
+import { Typography } from "@mui/material";
+import PageBtnContainer from "./PageBtnContainer";
+import Loading from "./Loading";
 
 const InventoryContainer = () => {
   const {
@@ -22,7 +25,17 @@ const InventoryContainer = () => {
   }, [page, search, searchStatus, searchType, sort]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return (
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Loading />
+      </div>
+    );
   }
 
   if (inventory.length === 0) {

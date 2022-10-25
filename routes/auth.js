@@ -13,6 +13,6 @@ const authenticateUser = require("../middleware/authentication");
 
 router.route("/register").post(apiLimiter, register);
 router.route("/login").post(apiLimiter, login);
-router.route("updateUser").patch(authenticateUser, updateUser);
+router.route("/updateUser").patch(authenticateUser, updateUser);
 
 module.exports = router;
