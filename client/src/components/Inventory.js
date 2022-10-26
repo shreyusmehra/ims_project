@@ -21,7 +21,7 @@ const Inventory = ({ _id, productName, description, status, category }) => {
           width: "30%",
         }}
       >
-        <CardContent>
+        <CardContent style={{ textTransform: "capitalize" }}>
           <Typography variant="h5" component="div">
             {productName}
           </Typography>
