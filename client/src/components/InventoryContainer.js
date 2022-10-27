@@ -41,14 +41,24 @@ const InventoryContainer = () => {
   if (inventory.length === 0) {
     return (
       <div>
-        <h2>No jobs to display...</h2>
+        <Typography variant="h5" style={{ textAlign: "center" }}>
+          No jobs to display...
+        </Typography>
       </div>
     );
   }
 
   return (
-    <div style={{ display: "flex", flexDirection: "column", flexWrap: "wrap" }}>
-      <Typography variant="h5" style={{ textAlign: "center" }}>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <Typography variant="h5">
         {totalInventory} product{inventory.length > 1 && "s"} found
       </Typography>
       <div

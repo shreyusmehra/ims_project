@@ -20,6 +20,7 @@ const Inventory = ({ _id, productName, description, status, category }) => {
           cursor: "pointer",
           width: "30%",
         }}
+        elevation={3}
       >
         <CardContent style={{ textTransform: "capitalize" }}>
           <Typography variant="h5" component="div">
@@ -37,13 +38,17 @@ const Inventory = ({ _id, productName, description, status, category }) => {
           <Button size="small">
             <Link
               to={"/addinventory"}
-              style={{ textDecoration: "none" }}
+              style={{ textDecoration: "none", color: "#1976d2" }}
               onClick={() => setEditInventory(_id)}
             >
               Edit
             </Link>
           </Button>
-          <Button size="small" onClick={() => deleteInventory(_id)}>
+          <Button
+            size="small"
+            onClick={() => deleteInventory(_id)}
+            color="error"
+          >
             Delete
           </Button>
         </CardActions>

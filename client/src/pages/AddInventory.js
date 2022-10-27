@@ -50,8 +50,10 @@ const AddInventory = () => {
       style={{
         display: "flex",
         flexDirection: "column",
+        flexWrap: "wrap",
+        justifyContent: "center",
+        alignItems: "center",
         margin: "80px 0px 10px 10px",
-        width: "50%",
       }}
     >
       {showAlert && <AlertComponent />}
@@ -130,19 +132,21 @@ const AddInventory = () => {
         </Select>
       </FormControl>
       <Button
-        variant="outlined"
+        variant="contained"
         onClick={handleSubmit}
         disabled={isLoading}
         style={{ margin: "10px 0px 10px 0px" }}
+        color="success"
       >
         {isEditing ? "Save Changes" : "Create"}
       </Button>
       <Button
-        variant="outlined"
+        variant="contained"
         onClick={(e) => {
           e.preventDefault();
           clearValues();
         }}
+        color="error"
       >
         Clear
       </Button>

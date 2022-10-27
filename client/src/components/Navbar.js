@@ -7,6 +7,7 @@ import IconButton from "@mui/material/IconButton";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
+import InventoryIcon from "@mui/icons-material/Inventory";
 import { useAppContext } from "../context/appContext";
 import { useState } from "react";
 import { Link } from "react-router-dom";
@@ -31,6 +32,7 @@ const Navbar = () => {
       <AppBar position="fixed">
         <Toolbar>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <InventoryIcon style={{ margin: "0px 5px 0px 0px " }} />
             Inventory Management System
           </Typography>
           <div>
@@ -71,7 +73,7 @@ const Navbar = () => {
               </Link>
             </Menu>
           </div>
-          <Button variant="contained" onClick={logoutUser}>
+          <Button variant="contained" onClick={logoutUser} color="error">
             Logout
           </Button>
         </Toolbar>

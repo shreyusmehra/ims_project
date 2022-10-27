@@ -3,6 +3,7 @@ import { useState } from "react";
 import AlertComponent from "../components/Alert";
 import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const Profile = () => {
   const { user, showAlert, displayAlert, updateUser, isLoading } =
@@ -26,28 +27,31 @@ const Profile = () => {
         display: "flex",
         flexDirection: "column",
         flexWrap: "wrap",
-        width: "30%",
+        justifyContent: "center",
+        alignItems: "center",
+        width: "100%",
       }}
     >
       <Typography
         variant="h5"
         component="div"
         sx={{ flexGrow: 1 }}
-        style={{ textAlign: "center" }}
+        style={{ margin: "0px 0px 10px 0px " }}
       >
         Profile
       </Typography>
       {showAlert && <AlertComponent />}
+      <AccountCircleIcon fontSize={"large"} />
       <TextField
         value={name}
-        placeholder="Name"
+        label="Name"
         variant="outlined"
         onChange={(e) => setName(e.target.value)}
         style={{ margin: "20px 0px 10px 0px" }}
       />
       <TextField
         value={email}
-        placeholder="Email"
+        label="Email"
         variant="outlined"
         onChange={(e) => setEmail(e.target.value)}
         style={{ margin: "10px 0px 10px 0px" }}

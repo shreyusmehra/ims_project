@@ -1,10 +1,13 @@
 import { useAppContext } from "../context/appContext";
-import TextField from "@mui/material/TextField";
 import { Button } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import IconButton from "@mui/material/IconButton";
+import SearchIcon from "@mui/icons-material/Search";
 
 const SearchContainer = () => {
   const {
@@ -31,7 +34,7 @@ const SearchContainer = () => {
   };
 
   return (
-    <div
+    <FormControl
       style={{
         margin: "100px 0px 20px 10px",
         display: "flex",
@@ -40,14 +43,29 @@ const SearchContainer = () => {
         justifyContent: "space-evenly",
         alignItems: "center",
       }}
+      onSubmit={(e) => e.preventDefault()}
     >
-      <TextField
-        label="Search"
-        variant="outlined"
-        name="search"
-        value={search}
-        onChange={handleSearch}
-      />
+      <Paper
+        component="form"
+        sx={{
+          p: "2px 4px",
+          display: "flex",
+          alignItems: "center",
+          width: 400,
+        }}
+      >
+        <InputBase
+          sx={{ ml: 1, flex: 1 }}
+          placeholder="Search Inventory ..."
+          name="search"
+          value={search}
+          onChange={handleSearch}
+          inputProps={{ "aria-label": "search game name" }}
+        />
+        <IconButton sx={{ p: "10px" }} aria-label="search">
+          <SearchIcon />
+        </IconButton>
+      </Paper>
       {/* search by status */}
       <FormControl
         sx={{ m: 1, minWidth: 120, backgroundColor: "white" }}
@@ -121,7 +139,7 @@ const SearchContainer = () => {
       <Button variant="contained" onClick={handleSubmit} disabled={isLoading}>
         Clear Filters
       </Button>
-    </div>
+    </FormControl>
   );
 };
 export default SearchContainer;
