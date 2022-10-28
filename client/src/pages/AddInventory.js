@@ -6,6 +6,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import AlertComponent from "../components/Alert";
+import { motion } from "framer-motion";
 
 const AddInventory = () => {
   const {
@@ -44,6 +45,11 @@ const AddInventory = () => {
     handleChange({ name, value });
   };
 
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
+
   return (
     <div
       className="add-inventory-container"
@@ -57,99 +63,156 @@ const AddInventory = () => {
       }}
     >
       {showAlert && <AlertComponent />}
-      <Typography
-        variant="h5"
-        component="div"
-        sx={{ flexGrow: 1 }}
-        style={{ textAlign: "center" }}
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        transition={{ ease: "easeIn", duration: 1, delay: 1 }}
       >
-        {isEditing ? "Edit Inventory" : "Add Inventory"}
-      </Typography>
-      <TextField
-        label="Product Name"
-        variant="outlined"
-        name="productName"
-        value={productName}
-        onChange={handleInventoryInput}
-        style={{ margin: "10px 0px 10px 0px" }}
-      />
-      <TextField
-        label="Description of the Product"
-        variant="outlined"
-        name="description"
-        value={description}
-        onChange={handleInventoryInput}
-        style={{ margin: "10px 0px 10px 0px" }}
-      />
-      <FormControl
-        sx={{ m: 1, minWidth: 120, backgroundColor: "white" }}
-        size="small"
-        style={{ margin: "10px 0px 10px 0px" }}
-      >
-        <InputLabel id="select-status">Status</InputLabel>
-        <Select
-          value={status}
-          label="status"
-          name="status"
-          onChange={handleInventoryInput}
+        <Typography
+          variant="h5"
+          component="div"
+          sx={{ flexGrow: 1 }}
+          style={{ textAlign: "center" }}
         >
-          {statusOptions.map((item, index) => {
-            return (
-              <MenuItem
-                value={item}
-                style={{ textTransform: "capitalize" }}
-                key={index}
-              >
-                {item}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      <FormControl
-        sx={{ m: 1, minWidth: 120, backgroundColor: "white" }}
-        size="small"
-        style={{ margin: "10px 0px 10px 0px" }}
-      >
-        <InputLabel id="select-category">Category</InputLabel>
-        <Select
-          value={category}
-          label="category"
-          name="category"
-          onChange={handleInventoryInput}
-        >
-          {categoryOptions.map((item, index) => {
-            return (
-              <MenuItem
-                value={item}
-                style={{ textTransform: "capitalize" }}
-                key={index}
-              >
-                {item}
-              </MenuItem>
-            );
-          })}
-        </Select>
-      </FormControl>
-      <Button
-        variant="contained"
-        onClick={handleSubmit}
-        disabled={isLoading}
-        style={{ margin: "10px 0px 10px 0px" }}
-        color="success"
-      >
-        {isEditing ? "Save Changes" : "Create"}
-      </Button>
-      <Button
-        variant="contained"
-        onClick={(e) => {
-          e.preventDefault();
-          clearValues();
+          {isEditing ? "Edit Inventory" : "Add Inventory"}
+        </Typography>
+      </motion.div>
+      <motion.div
+        animate={{ x: [-1000, 0], opacity: 1 }}
+        transition={{
+          delay: 2,
+          x: { type: "spring", stiffness: 100 },
+          default: { duration: 2 },
         }}
-        color="error"
       >
-        Clear
-      </Button>
+        <TextField
+          label="Product Name"
+          variant="outlined"
+          name="productName"
+          value={productName}
+          onChange={handleInventoryInput}
+          style={{ margin: "10px 0px 10px 0px" }}
+        />
+      </motion.div>
+      <motion.div
+        animate={{ x: [1000, 0], opacity: 1 }}
+        transition={{
+          delay: 2,
+          x: { type: "spring", stiffness: 100 },
+          default: { duration: 2 },
+        }}
+      >
+        <TextField
+          label="Description of the Product"
+          variant="outlined"
+          name="description"
+          value={description}
+          onChange={handleInventoryInput}
+          style={{ margin: "10px 0px 10px 0px" }}
+        />
+      </motion.div>
+      <motion.div
+        animate={{ x: [-1000, 0], opacity: 1 }}
+        transition={{
+          delay: 2,
+          x: { type: "spring", stiffness: 100 },
+          default: { duration: 2 },
+        }}
+      >
+        <FormControl
+          sx={{ m: 1, minWidth: 120, backgroundColor: "white" }}
+          size="small"
+          style={{ margin: "10px 0px 10px 0px" }}
+        >
+          <InputLabel id="select-status">Status</InputLabel>
+          <Select
+            value={status}
+            label="status"
+            name="status"
+            onChange={handleInventoryInput}
+          >
+            {statusOptions.map((item, index) => {
+              return (
+                <MenuItem
+                  value={item}
+                  style={{ textTransform: "capitalize" }}
+                  key={index}
+                >
+                  {item}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </motion.div>
+      <motion.div
+        animate={{ x: [1000, 0], opacity: 1 }}
+        transition={{
+          delay: 2,
+          x: { type: "spring", stiffness: 100 },
+          default: { duration: 2 },
+        }}
+      >
+        <FormControl
+          sx={{ m: 1, minWidth: 120, backgroundColor: "white" }}
+          size="small"
+          style={{ margin: "10px 0px 10px 0px" }}
+        >
+          <InputLabel id="select-category">Category</InputLabel>
+          <Select
+            value={category}
+            label="category"
+            name="category"
+            onChange={handleInventoryInput}
+          >
+            {categoryOptions.map((item, index) => {
+              return (
+                <MenuItem
+                  value={item}
+                  style={{ textTransform: "capitalize" }}
+                  key={index}
+                >
+                  {item}
+                </MenuItem>
+              );
+            })}
+          </Select>
+        </FormControl>
+      </motion.div>
+      <motion.div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          flexWrap: "wrap",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        transition={{ ease: "easeIn", duration: 1, delay: 2 }}
+      >
+        <Button
+          variant="contained"
+          onClick={handleSubmit}
+          disabled={isLoading}
+          style={{ margin: "10px 0px 10px 0px" }}
+          color="success"
+        >
+          {isEditing ? "Save Changes" : "Create"}
+        </Button>
+        <Button
+          variant="contained"
+          onClick={(e) => {
+            e.preventDefault();
+            clearValues();
+          }}
+          color="error"
+        >
+          Clear
+        </Button>
+      </motion.div>
     </div>
   );
 };

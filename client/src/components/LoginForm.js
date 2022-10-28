@@ -12,6 +12,7 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { useNavigate } from "react-router-dom";
 import { useAppContext } from "../context/appContext";
 import AlertComponent from "./Alert";
+import { motion } from "framer-motion";
 
 const initialState = {
   name: "",
@@ -73,23 +74,62 @@ const LoginForm = () => {
   }, [user, navigate]);
 
   const darkTheme = createTheme({ palette: { mode: "light" } });
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
   return (
     <ThemeProvider theme={darkTheme}>
       <div className="login-form">
         {showAlert && <AlertComponent />}
-        <Card
-          sx={{ minWidth: 275 }}
-          elevation={20}
-          style={{ margin: "20px 0px 0px 0px" }}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={variants}
+          transition={{ ease: "easeIn", duration: 1, delay: 2 }}
         >
-          <Typography
-            variant="h4"
-            style={{ textAlign: "center", margin: "20px 0px 0px 0px" }}
+          <Card
+            sx={{ minWidth: 275 }}
+            elevation={20}
+            style={{ margin: "20px 0px 0px 0px" }}
           >
-            {values.isMember ? "Login" : "Register"}
-          </Typography>
-          <CardContent>
-            {!values.isMember && (
+            <Typography
+              variant="h4"
+              style={{ textAlign: "center", margin: "20px 0px 0px 0px" }}
+            >
+              {values.isMember ? "Login" : "Register"}
+            </Typography>
+            <CardContent>
+              {!values.isMember && (
+                <Paper
+                  component="form"
+                  elevation={0}
+                  variant="outlined"
+                  sx={{
+                    p: "2px 4px",
+                    display: "flex",
+                    alignItems: "center",
+                    width: 400,
+                  }}
+                  className="name-input"
+                >
+                  <TextField
+                    variant="standard"
+                    label="Full Name"
+                    sx={{ ml: 1, flex: 1 }}
+                    value={values.name}
+                    name="name"
+                    onChange={handleChange}
+                  />
+                  <IconButton
+                    type="submit"
+                    sx={{ p: "10px" }}
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <PersonIcon />
+                  </IconButton>
+                </Paper>
+              )}
               <Paper
                 component="form"
                 elevation={0}
@@ -100,14 +140,14 @@ const LoginForm = () => {
                   alignItems: "center",
                   width: 400,
                 }}
-                className="name-input"
+                className="email-input"
               >
                 <TextField
                   variant="standard"
-                  label="Full Name"
+                  label="Email"
                   sx={{ ml: 1, flex: 1 }}
-                  value={values.name}
-                  name="name"
+                  value={values.email}
+                  name="email"
                   onChange={handleChange}
                 />
                 <IconButton
@@ -115,82 +155,71 @@ const LoginForm = () => {
                   sx={{ p: "10px" }}
                   onClick={(e) => e.preventDefault()}
                 >
-                  <PersonIcon />
+                  <EmailIcon />
                 </IconButton>
               </Paper>
-            )}
-            <Paper
-              component="form"
-              elevation={0}
-              variant="outlined"
-              sx={{
-                p: "2px 4px",
-                display: "flex",
-                alignItems: "center",
-                width: 400,
-              }}
-              className="email-input"
-            >
-              <TextField
-                variant="standard"
-                label="Email"
-                sx={{ ml: 1, flex: 1 }}
-                value={values.email}
-                name="email"
-                onChange={handleChange}
-              />
-              <IconButton
-                type="submit"
-                sx={{ p: "10px" }}
-                onClick={(e) => e.preventDefault()}
+              <Paper
+                component="form"
+                elevation={0}
+                variant="outlined"
+                sx={{
+                  p: "2px 4px",
+                  display: "flex",
+                  alignItems: "center",
+                  width: 400,
+                }}
+                className="password-input"
               >
-                <EmailIcon />
-              </IconButton>
-            </Paper>
-            <Paper
-              component="form"
-              elevation={0}
-              variant="outlined"
-              sx={{
-                p: "2px 4px",
-                display: "flex",
-                alignItems: "center",
-                width: 400,
-              }}
-              className="password-input"
-            >
-              <TextField
-                variant="standard"
-                label="Password"
-                sx={{ ml: 1, flex: 1 }}
-                type={isVisible ? "text" : "password"}
-                value={values.password}
-                name="password"
-                onChange={handleChange}
-              />
-              <IconButton
-                type="submit"
-                sx={{ p: "10px" }}
-                onClick={(e) => handleClick(e)}
+                <TextField
+                  variant="standard"
+                  label="Password"
+                  sx={{ ml: 1, flex: 1 }}
+                  type={isVisible ? "text" : "password"}
+                  value={values.password}
+                  name="password"
+                  onChange={handleChange}
+                />
+                <IconButton
+                  type="submit"
+                  sx={{ p: "10px" }}
+                  onClick={(e) => handleClick(e)}
+                >
+                  {isVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
+                </IconButton>
+              </Paper>
+              <motion.div
+                animate={{ x: [-1000, 0], opacity: 1 }}
+                transition={{
+                  delay: 3,
+                  x: { type: "spring", stiffness: 100 },
+                  default: { duration: 2 },
+                }}
               >
-                {isVisible ? <VisibilityIcon /> : <VisibilityOffIcon />}
-              </IconButton>
-            </Paper>
-            <Button
-              variant="outlined"
-              disabled={isLoading}
-              onClick={(e) => onSubmit(e)}
-            >
-              {values.isMember ? "Login" : "Register"}
-            </Button>
-            <p style={{ margin: "10px 0px 0px 0px" }}>
-              {values.isMember ? "Not a Member yet?" : "Already a Member?"}
-              <Button onClick={toggleMember}>
-                {values.isMember ? "Register" : "Login"}
-              </Button>
-            </p>
-          </CardContent>
-        </Card>
+                <Button
+                  variant="outlined"
+                  disabled={isLoading}
+                  onClick={(e) => onSubmit(e)}
+                >
+                  {values.isMember ? "Login" : "Register"}
+                </Button>
+              </motion.div>
+              <motion.p
+                animate={{ x: [1000, 0], opacity: 1 }}
+                transition={{
+                  delay: 3,
+                  x: { type: "spring", stiffness: 100 },
+                  default: { duration: 2 },
+                }}
+                style={{ margin: "10px 0px 0px 0px" }}
+              >
+                {values.isMember ? "Not a Member yet?" : "Already a Member?"}
+                <Button onClick={toggleMember}>
+                  {values.isMember ? "Register" : "Login"}
+                </Button>
+              </motion.p>
+            </CardContent>
+          </Card>
+        </motion.div>
       </div>
     </ThemeProvider>
   );

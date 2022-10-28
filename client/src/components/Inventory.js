@@ -5,12 +5,21 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import { motion } from "framer-motion";
 
 const Inventory = ({ _id, productName, description, status, category }) => {
   const { setEditInventory, deleteInventory } = useAppContext();
 
   return (
-    <div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{
+        opacity: 1,
+        transition: {
+          duration: 1,
+        },
+      }}
+    >
       <Card
         sx={{ minWidth: 275 }}
         style={{
@@ -53,7 +62,7 @@ const Inventory = ({ _id, productName, description, status, category }) => {
           </Button>
         </CardActions>
       </Card>
-    </div>
+    </motion.div>
   );
 };
 

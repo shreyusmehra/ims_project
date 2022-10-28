@@ -4,6 +4,7 @@ import Inventory from "./Inventory";
 import { Typography } from "@mui/material";
 import PageBtnContainer from "./PageBtnContainer";
 import Loading from "./Loading";
+import { motion } from "framer-motion";
 
 const InventoryContainer = () => {
   const {
@@ -18,6 +19,11 @@ const InventoryContainer = () => {
     sort,
     numOfPages,
   } = useAppContext();
+
+  const variants = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  };
 
   useEffect(() => {
     getInventory();
@@ -40,11 +46,18 @@ const InventoryContainer = () => {
 
   if (inventory.length === 0) {
     return (
-      <div>
+      <motion.div
+        animate={{ x: [-1000, 0], opacity: 1 }}
+        transition={{
+          delay: 1,
+          x: { type: "spring", stiffness: 100 },
+          default: { duration: 2 },
+        }}
+      >
         <Typography variant="h5" style={{ textAlign: "center" }}>
           No jobs to display...
         </Typography>
-      </div>
+      </motion.div>
     );
   }
 
@@ -58,10 +71,23 @@ const InventoryContainer = () => {
         alignItems: "center",
       }}
     >
-      <Typography variant="h5">
-        {totalInventory} product{inventory.length > 1 && "s"} found
-      </Typography>
-      <div
+      <motion.div
+        animate={{ x: [-1000, 0], opacity: 1 }}
+        transition={{
+          delay: 1,
+          x: { type: "spring", stiffness: 100 },
+          default: { duration: 2 },
+        }}
+      >
+        <Typography variant="h5">
+          {totalInventory} product{inventory.length > 1 && "s"} found
+        </Typography>
+      </motion.div>
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        variants={variants}
+        transition={{ ease: "easeIn", duration: 1, delay: 1 }}
         style={{
           margin: "20px 0px 0px 0px",
           display: "flex",
@@ -74,10 +100,19 @@ const InventoryContainer = () => {
         {inventory.map((item) => {
           return <Inventory key={item._id} {...item} />;
         })}
-      </div>
-      <div style={{ textAlign: "center", margin: "20px 0px 20px 0px" }}>
+      </motion.div>
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{
+          opacity: 1,
+          transition: {
+            duration: 1,
+          },
+        }}
+        style={{ textAlign: "center", margin: "20px 0px 20px 0px" }}
+      >
         {numOfPages > 1 && <PageBtnContainer />}
-      </div>
+      </motion.div>
     </div>
   );
 };
