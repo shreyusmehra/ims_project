@@ -44,7 +44,9 @@ const PageBtnContainer = () => {
         <NavigateBeforeIcon />
         prev
       </Button>
-      <div style={{ fontWeight: "bold" }}>Page {page}</div>
+      <div style={{ fontWeight: "bold" }}>
+        Page {page} of {numOfPages}
+      </div>
       <Button
         variant="standard"
         onClick={nextPage}

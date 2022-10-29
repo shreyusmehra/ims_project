@@ -86,7 +86,7 @@ const LoginForm = () => {
           initial="hidden"
           animate="visible"
           variants={variants}
-          transition={{ ease: "easeIn", duration: 1, delay: 2 }}
+          transition={{ ease: "easeIn", duration: 1, delay: 1 }}
         >
           <Card
             sx={{ minWidth: 275 }}
@@ -190,7 +190,7 @@ const LoginForm = () => {
               <motion.div
                 animate={{ x: [-1000, 0], opacity: 1 }}
                 transition={{
-                  delay: 3,
+                  delay: 2,
                   x: { type: "spring", stiffness: 100 },
                   default: { duration: 2 },
                 }}
@@ -206,7 +206,7 @@ const LoginForm = () => {
               <motion.p
                 animate={{ x: [1000, 0], opacity: 1 }}
                 transition={{
-                  delay: 3,
+                  delay: 2,
                   x: { type: "spring", stiffness: 100 },
                   default: { duration: 2 },
                 }}

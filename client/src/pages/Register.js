@@ -10,7 +10,7 @@ const Home = () => {
     <div className="home-container">
       <motion.div
         animate={{ y: [-100, 0] }}
-        transition={{ ease: "easeIn", duration: 2 }}
+        transition={{ ease: "easeIn", duration: 1 }}
       >
         <Box sx={{ flexGrow: 1 }}>
           <AppBar position="static">

@@ -6,9 +6,14 @@ import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { motion } from "framer-motion";
+import { useState } from "react";
+import DeleteModal from "./DeleteModal";
 
 const Inventory = ({ _id, productName, description, status, category }) => {
-  const { setEditInventory, deleteInventory } = useAppContext();
+  const { setEditInventory } = useAppContext();
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <motion.div
@@ -53,13 +58,15 @@ const Inventory = ({ _id, productName, description, status, category }) => {
               Edit
             </Link>
           </Button>
-          <Button
-            size="small"
-            onClick={() => deleteInventory(_id)}
-            color="error"
-          >
+          <Button size="small" onClick={handleOpen} color="error">
             Delete
           </Button>
+          <DeleteModal
+            open={open}
+            handleClose={handleClose}
+            _id={_id}
+            productName={productName}
+          />
         </CardActions>
       </Card>
     </motion.div>
