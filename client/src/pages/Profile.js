@@ -3,7 +3,7 @@ import { useState } from "react";
 import AlertComponent from "../components/Alert";
 import TextField from "@mui/material/TextField";
 import { Button, Typography } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import Avatar from "@mui/material/Avatar";
 import { motion } from "framer-motion";
 
 const Profile = () => {
@@ -54,10 +54,13 @@ const Profile = () => {
         >
           Profile
         </Typography>
-        <AccountCircleIcon
-          fontSize={"large"}
-          style={{ margin: "0px 0px 0px 15px" }}
-        />
+        <Avatar
+          sx={{ bgcolor: "#1976d2", width: 50, height: 50 }}
+          style={{ margin: "0px 0px 0px 5px" }}
+        >
+          {user.name[0]}
+          {user.name.split(" ")[1][0]}
+        </Avatar>
       </motion.div>
       <motion.div
         animate={{ x: [-1000, 0], opacity: 1 }}
@@ -72,7 +75,11 @@ const Profile = () => {
           label="Name"
           variant="outlined"
           onChange={(e) => setName(e.target.value)}
-          style={{ margin: "20px 0px 10px 0px" }}
+          style={{
+            margin: "20px 0px 10px 0px",
+            backgroundColor: "#fff",
+            borderRadius: "5px",
+          }}
         />
       </motion.div>
       <motion.div
@@ -88,7 +95,11 @@ const Profile = () => {
           label="Email"
           variant="outlined"
           onChange={(e) => setEmail(e.target.value)}
-          style={{ margin: "10px 0px 10px 0px" }}
+          style={{
+            margin: "10px 0px 10px 0px",
+            backgroundColor: "#fff",
+            borderRadius: "5px",
+          }}
         />
       </motion.div>
       <motion.div

@@ -27,7 +27,7 @@ const DeleteModal = ({ open, handleClose, _id, productName }) => {
     >
       <Box sx={style}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-          Are you sure you eant to delete {productName}?
+          Are you sure you want to delete {productName}?
         </Typography>
         <div
           style={{

@@ -92,7 +92,11 @@ const AddInventory = () => {
           name="productName"
           value={productName}
           onChange={handleInventoryInput}
-          style={{ margin: "10px 0px 10px 0px" }}
+          style={{
+            margin: "10px 0px 10px 0px",
+            backgroundColor: "#fff",
+            borderRadius: "5px",
+          }}
         />
       </motion.div>
       <motion.div
@@ -109,7 +113,11 @@ const AddInventory = () => {
           name="description"
           value={description}
           onChange={handleInventoryInput}
-          style={{ margin: "10px 0px 10px 0px" }}
+          style={{
+            margin: "10px 0px 10px 0px",
+            backgroundColor: "#fff",
+            borderRadius: "5px",
+          }}
         />
       </motion.div>
       <motion.div
@@ -123,7 +131,7 @@ const AddInventory = () => {
         <FormControl
           sx={{ m: 1, minWidth: 120, backgroundColor: "white" }}
           size="small"
-          style={{ margin: "10px 0px 10px 0px" }}
+          style={{ margin: "10px 0px 10px 0px", borderRadius: "5px" }}
         >
           <InputLabel id="select-status">Status</InputLabel>
           <Select
@@ -157,7 +165,7 @@ const AddInventory = () => {
         <FormControl
           sx={{ m: 1, minWidth: 120, backgroundColor: "white" }}
           size="small"
-          style={{ margin: "10px 0px 10px 0px" }}
+          style={{ margin: "10px 0px 10px 0px", borderRadius: "5px" }}
         >
           <InputLabel id="select-category">Category</InputLabel>
           <Select
