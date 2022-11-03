@@ -23,6 +23,8 @@ import {
   EDIT_INVENTORY_BEGIN,
   EDIT_INVENTORY_SUCCESS,
   EDIT_INVENTORY_ERROR,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
   CLEAR_FILTERS,
   CHANGE_PAGE,
 } from "./actions";
@@ -244,6 +246,23 @@ const AppProvider = ({ children }) => {
     }
   };
 
+  const showStats = async () => {
+    dispatch({ type: SHOW_STATS_BEGIN });
+    try {
+      const { data } = await authFetch("/inventory/stats");
+      dispatch({
+        type: SHOW_STATS_SUCCESS,
+        payload: {
+          stats: data.defaultStats,
+          monthlyProducts: data.monthlyProducts,
+        },
+      });
+    } catch (error) {
+      logoutUser();
+    }
+    clearAlert();
+  };
+
   const clearFilters = () => {
     dispatch({ type: CLEAR_FILTERS });
   };
@@ -266,6 +285,7 @@ const AppProvider = ({ children }) => {
         setEditInventory,
         editInventory,
         deleteInventory,
+        showStats,
         clearFilters,
         changePage,
       }}

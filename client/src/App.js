@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from "./pages/Register";
 import ErrorPage from "./pages/ErrorPage";
-import Dashboard from "./pages/Dashboard";
+import Stats from "./pages/Stats";
 import ProtectedRoute from "./pages/ProtectedRoute";
 import SharedLayout from "./pages/SharedLayout";
 import Landing from "./pages/Landing";
@@ -23,7 +23,7 @@ const App = () => {
               </ProtectedRoute>
             }
           >
-            <Route index element={<Dashboard />} />
+            <Route index element={<Stats />} />
             <Route path="allinventory" element={<AllInventory />} />
             <Route path="addjobs" element={<AddInventory />} />
             <Route path="profile" element={<Profile />} />

@@ -20,6 +20,8 @@ import {
   EDIT_INVENTORY_BEGIN,
   EDIT_INVENTORY_SUCCESS,
   EDIT_INVENTORY_ERROR,
+  SHOW_STATS_BEGIN,
+  SHOW_STATS_SUCCESS,
   CLEAR_FILTERS,
   CHANGE_PAGE,
 } from "./actions";
@@ -194,6 +196,21 @@ const reducer = (state, action) => {
       showAlert: true,
       alertType: "error",
       alertText: action.payload.msg,
+    };
+  }
+  if (action.type === SHOW_STATS_BEGIN) {
+    return {
+      ...state,
+      isLoading: true,
+      showAlert: false,
+    };
+  }
+  if (action.type === SHOW_STATS_SUCCESS) {
+    return {
+      ...state,
+      isLoading: false,
+      stats: action.payload.stats,
+      monthlyProducts: action.payload.monthlyProducts,
     };
   }
   if (action.type === CLEAR_FILTERS) {
