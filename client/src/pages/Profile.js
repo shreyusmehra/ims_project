@@ -30,7 +30,7 @@ const Profile = () => {
   return (
     <div
       style={{
-        margin: "80px 0px 0px 0px ",
+        margin: "100px 0px 0px 0px ",
         display: "flex",
         flexDirection: "column",
         flexWrap: "wrap",

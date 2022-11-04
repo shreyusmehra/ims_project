@@ -59,7 +59,7 @@ const AddInventory = () => {
         flexWrap: "wrap",
         justifyContent: "center",
         alignItems: "center",
-        margin: "80px 0px 10px 10px",
+        margin: "100px 0px 10px 10px",
       }}
     >
       {showAlert && <AlertComponent />}

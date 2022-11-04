@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useAppContext } from "../context/appContext";
 import StatsContainer from "../components/StatsContainer";
+import ChartsContainer from "../components/ChartsContainer";
 import Loading from "../components/Loading";
 
 const Stats = () => {
@@ -29,7 +30,7 @@ const Stats = () => {
   return (
     <>
       <StatsContainer />
-      {monthlyProducts.length > 0}
+      {monthlyProducts.length > 0 && <ChartsContainer />}
     </>
   );
 };

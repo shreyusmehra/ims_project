@@ -38,7 +38,7 @@ const Navbar = () => {
 
   return (
     <motion.div
-      animate={{ y: [-100, 0] }}
+      animate={{ y: [-200, -100] }}
       transition={{ ease: "easeIn", duration: 2 }}
     >
       <Box sx={{ flexGrow: 1 }}>
